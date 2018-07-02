@@ -4,17 +4,17 @@
 # 2. do nothing - in which case the goblin will attack him anyway
 # 3. flee
 
-class Hero:
-    def __init__(self):
-        self.health = 10
-        self.power = 5
+class Character:
+    def __init__(self, power, health, name):
+        self.power = power
+        self.health = health
+        self.name = name
 
     def attack(self, enemy):
-        # Hero attacks goblin
         enemy.health -= self.power
-        print("You do {} damage to the goblin.".format(self.power))
+        print("{} does {} damage to the {}.".format(self.name, self.power, enemy.name))
         if enemy.health <= 0:
-            print("The goblin is dead.")
+            print("The {} is dead.".format(enemy.name))
 
     def alive(self):
         if self.health > 0:
@@ -23,37 +23,21 @@ class Hero:
             return False
 
     def print_status(self):
-        print("You have {} health and {} power.".format(self.health, self.power))
+        print("{} has {} health and {} power.".format(self.name, self.health, self.power))
 
 
+class Hero(Character):
+    def __init__(self, power, health, name):
+        super().__init__(power, health, name)
 
-class Goblin:
-    def __init__(self):
-        self.health = 6
-        self.power = 2
-
-    def attack(self, enemy):
-        # Goblin attacks hero
-        enemy.health -= self.power
-        print("The goblin does {} damage to you.".format(self.power))
-        if enemy.health <= 0:
-            print("You are dead.")
-
-    def alive(self):
-        if self.health > 0:
-            return True
-        else:
-            return False
-    
-    def print_status(self):
-        print("The goblin has {} health and {} power.".format(self.health, self.power))
-
-
+class Goblin(Character):
+    def __init__(self, power, health, name):
+        super().__init__(power, health, name)
 
 
 def main():
-    hero = Hero()
-    goblin = Goblin()
+    hero = Hero(5, 10, 'Hero')
+    goblin = Goblin(2, 6, 'Goblin')
 
     while goblin.alive() and hero.alive():
         hero.print_status()
