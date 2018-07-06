@@ -52,21 +52,20 @@ class Character:
 
 
         if enemy.name == "Angry Beaver":
-            rand_angry = random.randint(1,6)
+            rand_angry = random.randint(1,3)
             if rand_angry == 1:
                 print('The {} is super angry!'.format(enemy.name))
                 enemy_damage_multiplier = 2
             else:
                 enemy.health -= self.power
 
-        if self.name == 'Hero':
-            rand_attack = random.randint(1,5)
-            if hero_damage_multiplier == 0:
-                pass
-            elif rand_attack == 1:
-                hero_damage_multiplier = 2
-                print('The {} hit with double power!'.format(self.name))
-                enemy.health -= self.power * hero_damage_multiplier
+        rand_attack = random.randint(1,5)
+        if hero_damage_multiplier == 0:
+            pass
+        elif rand_attack == 1:
+            hero_damage_multiplier = 2
+            print('The {} hit with double power!'.format(self.name))
+            enemy.health -= self.power * hero_damage_multiplier
 
         print("{} does {} damage to the {}.".format(self.name, self.power * hero_damage_multiplier, enemy.name))
         if enemy.health <= 0:
@@ -126,9 +125,45 @@ class Character:
 
 
 class Hero(Character):
-    def __init__(self, power, health, name, coins):
+    def __init__(self, power, health, name, coins, armor):
         super().__init__(power, health, name)
         self.coins = coins
+        
+    
+class Tonic:
+        cost = 5
+        name = 'Tonic'
+        def use(self, hero):
+            hero.health = 10
+            print('{} has been restored to full health.'.format(hero.name))
+            
+class Armor:
+        cost = 5
+        name = 'Armor'
+        def use(self, hero):
+            hero.armor = 2
+
+class Evade:
+    cost = 5
+    name ='Evade'
+    def use(self, hero):
+        hero.evade = 2
+
+def buy_stuff(self):
+    while True:
+        print('Welcome to the store.')
+        print('You have {} coins.'.format(hero.coins))
+        print()
+        print('We have:')
+        print('1. Tonic - bring health back to full strength.')
+        print('2. Armor - increase ability to receive damage')
+        print('3. Evade - increase ability to evade enemy attack')
+        print('4. Energy Sword - increase attack strength')
+        print('5. Bazooka - blow up your enemy')
+        print()
+        print('What would you like to purchase? (1-5)')
+        choice = input('>')
+            
 
     # def attack(self, enemy):
     #     rand_attack = random.randint(1,5)
@@ -176,9 +211,29 @@ class Angry_beaver(Character):
         super().__init__(power, health, name)
         self.bounty = 7
 
+# class Store:
+#     def __init__(self, tonic, armor, evade, sword, bazooka):
+#         self.tonic = tonic
+#         self.armor = armor
+#         self.evade = evade
+#         self.sword = sword
+#         self.bazooka = bazooka
+
+#     def buy_stuff(self):
+#             print('Welcome to the store.')
+#             print()
+#             print('We have:')
+#             print('1. Tonic - bring health back to full strength.')
+#             print('2. Armor - increase ability to receive damage')
+#             print('3. Evade - increase ability to evade enemy attack')
+#             print('4. Energy Sword - increase attack strength')
+#             print('5. Bazooka - blow up your enemy')
+#             print()
+#             print('What would you like to purchase? (1-5)')
+#             choice = input('>')
 
 
-hero = Hero(5, 50, 'Noah', 20)
+hero = Hero(5, 50, 'Galactar', 20, 0)
 goblin = Goblin(2, 10, "Goblin", 5)
 shadow = Shadow(3, 1, "Shadow", 7)
 zombie = Zombie(2, 5, 'Zombie')
@@ -200,6 +255,7 @@ def main(hero, enemy):
         print("1. Fight {}".format(enemy.name))
         print("2. Do nothing")
         print("3. Flee")
+        print("4. Go to store")
         print("> ", end=' ')
         raw_input = input()
         if raw_input == "1":
@@ -222,7 +278,8 @@ def main(hero, enemy):
                 print("GAME OVER")
                 break
             
-
+        elif raw_input == '4':
+            hero.buy_stuff()
         else:
             print("Invalid input {}".format(raw_input))
         if enemy == sharknado:
