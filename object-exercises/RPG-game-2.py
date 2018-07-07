@@ -8,16 +8,6 @@ class Character:
         self.name = name
 
     def attack(self, enemy):
-        # if enemy_death_count == 0:
-        #     enemy.name = 'Goblin'
-        # elif enemy_death_count == 1:
-        #     enemy.name = 'Shadow'
-        # elif enemy_death_count == 2:
-        #     enemy.name = 'Zombie'
-        # elif enemy_death_count == 3:
-        #     enemy.name = 'Sharknado'
-        # elif enemy_death_count == 4:
-        #     enemy.name = 'Angry Beaver'
         hero_damage_multiplier = 1
         enemy_damage_multiplier = 1
         rand_heal = random.randint(1,5)
@@ -134,6 +124,7 @@ class Character:
         if self.health <= 0:
             print("{} is dead.".format(self.name))
             print("GAME OVER")
+            
         
         if rand_heal == 1:
             self.health += 2
@@ -243,19 +234,6 @@ class Hero(Character):
             self.bazooka += 1
             print('{} now has a bazooka.'.format(hero.name))
             self.print_status()
-
-    # def attack(self, enemy):
-    #     rand_attack = random.randint(1,5)
-    #     if rand_attack == 1:
-    #         enemy.health -= self.double_power
-    #         print("{} does double damage ({}) to the {}.".format(self.name, self.double_power, enemy.name))
-    #         if enemy.health <= 0:
-    #             print("The {} is dead.".format(enemy.name))
-    #     else:    
-    #         enemy.health -= self.power
-    #         print("{} does {} damage to the {}.".format(self.name, self.power, enemy.name))
-    #         if enemy.health <= 0:
-    #             print("The {} is dead.".format(enemy.name))
         
 
 class Goblin(Character):
@@ -299,9 +277,9 @@ sharknado = Sharknado(5, 15, 'Sharknado', 12)
 angry_beaver = Angry_beaver(3, 20, "Angry Beaver", 5)
 
 print()
-print('********************************************************')
-print("Galactar\'s Hardest Mission - Escape from Beaver Lodge")
-print('********************************************************')
+print('******************************************************')
+print("Fight Game - Galactar Fights A Bunch of Random Enemies")
+print('******************************************************')
 print()
 
 def main(hero, enemy):
