@@ -120,6 +120,7 @@ class Character:
                 armor_multiplier = .70
             print("{} counters with {} damage to {}.".format(enemy.name, enemy_damage_multiplier * enemy.power * armor_multiplier, self.name))
             self.health -= (enemy_damage_multiplier * enemy.power * armor_multiplier)
+            self.health = round(self.health, 2)
 
         if self.health <= 0:
             print("{} is dead.".format(self.name))
