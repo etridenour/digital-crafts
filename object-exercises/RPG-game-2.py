@@ -1,4 +1,3 @@
-
 import random
 
 class Character:
@@ -64,25 +63,34 @@ class Character:
         if enemy.health <= 0:
             if enemy.name == 'Goblin':
                 print("The {} is dead.".format(enemy.name))
-                print('It\'s body quickly decomposes into the ground, emitting a pungent odor.')
+                print()
                 self.coins += enemy.bounty
                 print("{} is rewarded with a bounty of {} coins for slaying the evil {}.".format(self.name, enemy.bounty, enemy.name))
                 print()
-                print('Shadow quickly approches to battle!')
+                print("""The Goblin\'s body quickly decomposes into the ground, emitting a pungent odor which reminds Galactar
+of previous missions where he single-handedly slaughtered millions of Goblins. The moment passes 
+quickly as a quick rush of air blasts over the ground. A new enemy, Shadow, appears to battle!""")
             elif enemy.name == 'Shadow':
-                print("The {} is dead.".format(enemy.name))
-                print('It\'s body vaporizes into into thin air.')
+                print("{} is dead.".format(enemy.name))
                 self.coins += enemy.bounty
                 print("{} is rewarded with a bounty of {} coins for slaying the evil {}.".format(self.name, enemy.bounty, enemy.name))
                 print()
-                print('The zombie slowly stumbles up for an attack!')
+                print('It\'s body vaporizes into into thin air. Galactar notices another pungent odor.')
+                print('He realizes the smell is rotting flesh as a zombie slowly stumbles up for an afternoon snack!')
             elif enemy.name == 'Sharknado':
                 print("{} is dead.".format(enemy.name))
-                print('It dissipates high in the sky, launching sharks all over the place.')
                 self.coins += enemy.bounty
                 print("{} is rewarded with a bounty of {} coins for slaying the evil {}.".format(self.name, enemy.bounty, enemy.name))
                 print()
-                print('Emerging from a nearby dam comes an Angry Beaver, the final enemy!')
+                print("""It dissipates high in the sky, launching sharks all over the place. Galactar, proud from
+defeating the Sharknado, suddenly has a bag thrown over his head. He is violently tied up and forced into 
+a beaver shaped spaceship. He awakens to find himself underground in an unfamiliar place. """)
+                print()
+                print("""Galactar sees what looks like a giant lake, and at the end of the lake a giant...beaver dam? 
+Galactar suddenly thinks of his arch nemesis, the giant Angry Beaver! He now knows where he is - the
+fabled Beaver Lodge. He knows time is of the essence, quickly unties himself, and starts heading towards
+the exit. And then suddenly, appearing from deep within the dam, the Angry Beaver approaches Galactar.""")
+                print()
             elif enemy.name == 'Zombie':
                 print("{} counters with {} damage to {}.".format(enemy.name, enemy_damage_multiplier * enemy.power, self.name))
                 self.health -= enemy_damage_multiplier * enemy.power
@@ -122,14 +130,15 @@ class Character:
             self.health -= (enemy_damage_multiplier * enemy.power * armor_multiplier)
             self.health = round(self.health, 2)
 
-        if self.health <= 0:
-            print("{} is dead.".format(self.name))
-            print("GAME OVER")
-            
         
         if rand_heal == 1:
             self.health += 2
             print('{} was healed +2 by the medic. What a nice medic.'.format(self.name))
+        
+        if self.health <= 0:
+            print("{} is dead.".format(self.name))
+            print("GAME OVER")
+            
             
     def alive(self):
         if self.name == "Zombie":
@@ -275,13 +284,16 @@ goblin = Goblin(2, 10, "Goblin", 5)
 shadow = Shadow(3, 1, "Shadow", 7)
 zombie = Zombie(2, 6, 'Zombie')
 sharknado = Sharknado(5, 15, 'Sharknado', 12)
-angry_beaver = Angry_beaver(3, 20, "Angry Beaver", 5)
+angry_beaver = Angry_beaver(3, 25, "Angry Beaver", 5)
 
 print()
-print('******************************************************')
-print("Fight Game - Galactar Fights A Bunch of Random Enemies")
-print('******************************************************')
+print('*****************************************************')
+print("Galactar's Hardest Mission - Escape from Beaver Lodge")
+print('*****************************************************')
 print()
+print("""Galactar awakens from a long slumber, noticing he is deep in the middle of the woods.
+A thick fog surrounds him. In the distance he sees a glowing figure. As it gets closer, he 
+notices it's a smelly Goblin! Galactar springs to his feet and prepares to defend himself!""")
 
 def main(hero, enemy):
     while hero.alive():
@@ -335,7 +347,7 @@ def main(hero, enemy):
         if sharknado.health <= 0:
             enemy = angry_beaver
         if angry_beaver.health <= 0:
-            print("{} deafeated the powerful Angry Beaver.".format(hero.name))
+            print("{} deafeated the powerful Angry Beaver and escapes from the Beaver Lodge.".format(hero.name))
             print('YOU WIN!')
             break
         
